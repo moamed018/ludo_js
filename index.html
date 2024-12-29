@@ -15,12 +15,27 @@
             margin: 40px;
         "
     >
+        <form action="" id="">
+            <label for="r1">1</label>
+            <input type="radio" name="rd" id="r1" value="1" checked />
+            <br />
+            <label for="r2">2</label>
+            <input type="radio" name="rd" id="r2" value="2" />
+            <br />
+            <label for="r3">3</label>
+            <input type="radio" name="rd" id="r3" value="3" />
+            <br />
+            <label for="r4">4</label>
+            <input type="radio" name="rd" id="r4" value="4" />
+            <br />
+        </form>
         <div id="canvas-div">
             <canvas
                 id="canvas"
                 class="canvas"
                 style="background-color: #fff"
             ></canvas>
+            <div id="active-border"></div>
             <span class="gamer" id="gamer1-user1" data-gamer="1" data-user="1"
                 >♟</span
             >
@@ -72,7 +87,52 @@
             <span class="gamer" id="gamer4-user4" data-gamer="4" data-user="4"
                 >♟</span
             >
+
+            <span class="user-title" data-user="1">User 1</span>
+            <span class="user-title" data-user="2">User 2</span>
+            <span class="user-title" data-user="3">User 3</span>
+            <span class="user-title" data-user="4">User 4</span>
         </div>
+
+        <button id="dices" class="anima">
+            <div>Go</div>
+            <img
+                id="image-dice-1"
+                src="images/dice-1.png"
+                data-dice="1"
+                alt="dice"
+            />
+            <img
+                id="image-dice-2"
+                src="images/dice-2.png"
+                data-dice="2"
+                alt="dice"
+            />
+            <img
+                id="image-dice-3"
+                src="images/dice-3.png"
+                data-dice="3"
+                alt="dice"
+            />
+            <img
+                id="image-dice-4"
+                src="images/dice-4.png"
+                data-dice="4"
+                alt="dice"
+            />
+            <img
+                id="image-dice-5"
+                src="images/dice-5.png"
+                data-dice="5"
+                alt="dice"
+            />
+            <img
+                id="image-dice-6"
+                src="images/dice-6.png"
+                data-dice="6"
+                alt="dice"
+            />
+        </button>
 
         <div
             id="alert"

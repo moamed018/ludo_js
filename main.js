@@ -4,6 +4,7 @@ const alertBox = document.getElementById("alert");
 const canvasBox = document.getElementById("canvas-div");
 const ctx = canvas.getContext("2d");
 const gamerItems = document.querySelectorAll(".gamer");
+const userTitle = document.querySelectorAll(".user-title");
 
 let width = 600;
 let height = 600;
@@ -23,6 +24,8 @@ let heightForRectInMiddle = height / 5;
 canvas.width = width;
 canvas.height = height;
 let activeUser = "1";
+
+let borderWidthForRect = 40;
 
 canvasBox.style = `width: ${width}px;  height: ${height}px`;
 
@@ -46,6 +49,9 @@ const users = {
         trans: "25",
         colorWithOpc: "#0000FF80",
         firstDir: "top",
+
+        borderX: 0 + borderWidthForRect / 2,
+        borderY: height - heightForRect + borderWidthForRect / 2,
         gamers: {
             gamer1: {
                 x: 0,
@@ -100,6 +106,9 @@ const users = {
         trans: "25",
         colorWithOpc: "#ffff0080",
         firstDir: "left",
+        borderX: width - widthForRect + borderWidthForRect / 2,
+        borderY: height - heightForRect + borderWidthForRect / 2,
+
         gamers: {
             gamer1: {
                 x: 0,
@@ -153,6 +162,9 @@ const users = {
         trans: "25",
         colorWithOpc: "#00FF0080",
         firstDir: "bottom",
+        borderX: width - widthForRect + borderWidthForRect / 2,
+        borderY: 0 + borderWidthForRect / 2,
+
         gamers: {
             gamer1: {
                 x: 0,
@@ -206,6 +218,8 @@ const users = {
         trans: "25",
         colorWithOpc: "#FF000080",
         firstDir: "right",
+        borderX: 0 + borderWidthForRect / 2,
+        borderY: 0 + borderWidthForRect / 2,
         gamers: {
             gamer1: {
                 x: 0,
@@ -1299,37 +1313,36 @@ listAreas.forEach((area) => {
     );
 });
 
-let borderWidthForRect = 40;
 ctx.lineWidth = borderWidthForRect;
 
 ctx.strokeStyle = users.user4.color;
 ctx.strokeRect(
-    0 + borderWidthForRect / 2,
-    0 + borderWidthForRect / 2,
+    users.user4.borderX,
+    users.user4.borderY,
     widthForRect - borderWidthForRect,
     heightForRect - borderWidthForRect
 );
 
 ctx.strokeStyle = users.user3.color;
 ctx.strokeRect(
-    width - widthForRect + borderWidthForRect / 2,
-    0 + borderWidthForRect / 2,
+    users.user3.borderX,
+    users.user3.borderY,
     widthForRect - borderWidthForRect,
     heightForRect - borderWidthForRect
 );
 
 ctx.strokeStyle = users.user1.color;
 ctx.strokeRect(
-    0 + borderWidthForRect / 2,
-    height - heightForRect + borderWidthForRect / 2,
+    users.user1.borderX,
+    users.user1.borderY,
     widthForRect - borderWidthForRect,
     heightForRect - borderWidthForRect
 );
 
 ctx.strokeStyle = users.user2.color;
 ctx.strokeRect(
-    width - widthForRect + borderWidthForRect / 2,
-    height - heightForRect + borderWidthForRect / 2,
+    users.user2.borderX,
+    users.user2.borderY,
     widthForRect - borderWidthForRect,
     heightForRect - borderWidthForRect
 );
@@ -1388,6 +1401,14 @@ createHome("1", 0, height - heightForRect, "#0000FF");
 createHome("2", width - widthForRect, height - heightForRect, "#ffff00");
 createHome("3", width - widthForRect, 0, "#00FF00");
 createHome("4", 0, 0, "#ff0000");
+
+[...userTitle].map((e) => {
+    e.style = `
+        top: ${users["user" + e.dataset.user].borderY - radius + 1}px;
+        left: ${users["user" + e.dataset.user].borderX}px;
+    `;
+    console.log(e.dataset);
+});
 
 const checkAreaIsActive = (x, y) => {
     return (
@@ -1791,8 +1812,50 @@ function delay(i) {
     }, 200 * i);
 }
 
-document.getElementById("btn").addEventListener("click", () => {
-    for (let i = 0; i < 3; i++) {
-        delay(i);
-    }
+document.getElementById("dices").addEventListener("click", (e) => {
+    activeUser = "2";
+    // for (let i = 0; i < 3; i++) {
+    //     delay(i);
+    // }
+    e.currentTarget.classList.add("anima");
+
+    const allItems = document.querySelectorAll("#dices *");
+
+    [...allItems].map((i) => {
+        i.style.display = "none";
+    });
+
+    const randomNum = Math.floor(Math.random() * 6 + 1);
+
+    const dice = document.getElementById(`image-dice-${randomNum}`);
+    dice.style.display = "block";
+    console.log(dice);
+});
+
+document.getElementById("dices").addEventListener("animationend", (e) => {
+    e.currentTarget.classList.remove("anima");
+});
+
+const radios = document.querySelectorAll("[type='radio']");
+[...radios].map((e) => {
+    e.addEventListener("click", () => {
+        activeUser = e.value;
+        const activeGamers = [...gamerItems].filter((g) => {
+            g.classList.remove("top-bottom");
+            return g.dataset.user === `${activeUser}`;
+        });
+
+        document.getElementById("active-border").style = `
+        width: ${widthForRect}px;
+        height: ${heightForRect}px;
+        border-width: ${borderWidthForRect}px;
+        top: ${users["user" + activeUser].borderY - radius}px;
+        left: ${users["user" + activeUser].borderX - radius}px;
+        display: block;
+        `;
+
+        activeGamers.map((g) => {
+            g.classList.add("top-bottom");
+        });
+    });
 });
