@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ludo</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body
+        style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 40px;
+        "
+    >
+        <div id="canvas-div">
+            <canvas
+                id="canvas"
+                class="canvas"
+                style="background-color: #fff"
+            ></canvas>
+            <span class="gamer" id="gamer1-user1" data-gamer="1" data-user="1"
+                >♟</span
+            >
+            <span class="gamer" id="gamer2-user1" data-gamer="2" data-user="1"
+                >♟</span
+            >
+            <span class="gamer" id="gamer3-user1" data-gamer="3" data-user="1"
+                >♟</span
+            >
+            <span class="gamer" id="gamer4-user1" data-gamer="4" data-user="1"
+                >♟</span
+            >
+
+            <span class="gamer" id="gamer1-user2" data-gamer="1" data-user="2"
+                >♟</span
+            >
+            <span class="gamer" id="gamer2-user2" data-gamer="2" data-user="2"
+                >♟</span
+            >
+            <span class="gamer" id="gamer3-user2" data-gamer="3" data-user="2"
+                >♟</span
+            >
+            <span class="gamer" id="gamer4-user2" data-gamer="4" data-user="2"
+                >♟</span
+            >
+
+            <span class="gamer" id="gamer1-user3" data-gamer="1" data-user="3"
+                >♟</span
+            >
+            <span class="gamer" id="gamer2-user3" data-gamer="2" data-user="3"
+                >♟</span
+            >
+            <span class="gamer" id="gamer3-user3" data-gamer="3" data-user="3"
+                >♟</span
+            >
+            <span class="gamer" id="gamer4-user3" data-gamer="4" data-user="3"
+                >♟</span
+            >
+
+            <span class="gamer" id="gamer1-user4" data-gamer="1" data-user="4"
+                >♟</span
+            >
+            <span class="gamer" id="gamer2-user4" data-gamer="2" data-user="4"
+                >♟</span
+            >
+            <span class="gamer" id="gamer3-user4" data-gamer="3" data-user="4"
+                >♟</span
+            >
+            <span class="gamer" id="gamer4-user4" data-gamer="4" data-user="4"
+                >♟</span
+            >
+        </div>
+
+        <div
+            id="alert"
+            style="
+                background-color: rgb(201, 192, 141);
+                width: 70%;
+                margin: 20px;
+                padding: 20px;
+                min-height: 20px;
+            "
+        ></div>
+        <button id="btn">3 Times</button>
+        <script src="main.js"></script>
+    </body>
+</html>

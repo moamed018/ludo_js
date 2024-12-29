@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#canvas-div {
+    position: relative;
+}
+
+.gamer {
+    display: block;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #000;
+    cursor: pointer;
+    transition: all 0.4s;
+    user-select: none;
+}
